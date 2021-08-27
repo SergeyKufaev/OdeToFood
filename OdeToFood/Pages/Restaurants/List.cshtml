@@ -1,0 +1,68 @@
+﻿@page
+@model ListModel
+@{
+    ViewData["Title"] = "Restaurants";
+}
+
+<h1>Restaurants</h1>
+
+<form method="get">
+    <div class="mb-3">
+        <div class="input-group">
+            <input type="search" class="form-control"
+                   asp-for="SearchTerm" />
+            @*<div class="input-group-append">
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>*@
+            <button class="btn btn-outline-secondary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+@*<table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th colspan="2">Cuisine Type</th>
+        </tr>
+        @foreach (var restaurant in Model.Restaurants)
+        {
+            <tr>
+                <td>@restaurant.Name</td>
+                <td>@restaurant.Location</td>
+                <td>@restaurant.Cuisine</td>
+                <td>
+                    <a class="btn btn-lg"
+                       asp-page="./Detail"
+                       asp-route-restaurantId="@restaurant.Id">
+                        <i class="fa fa-search-plus"></i>
+                    </a>
+                    <a class="btn btn-lg"
+                       asp-page="./Edit"
+                       asp-route-restaurantId="@restaurant.Id">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn btn-lg"
+                       asp-page="./Delete"
+                       asp-route-restaurantId="@restaurant.Id">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>*@
+
+@foreach (var restaurant in Model.Restaurants)
+{
+    <partial name="_Summary" model="restaurant" />
+}
+
+<a asp-page="./Edit" class="btn btn-primary">Add New</a>
+
+<div>
+    @Model.Message
+</div>
